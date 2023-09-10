@@ -18,15 +18,15 @@ public class Order extends BaseEntity{
 //    private Long memberId;
 
     //연관 관계 매핑
-    @ManyToOne //order == n, member == 1 한 회원은 여러개의 주문을 가질수있다.
+    @ManyToOne(fetch = FetchType.LAZY) //order == n, member == 1 한 회원은 여러개의 주문을 가질수있다.
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime orderDate;

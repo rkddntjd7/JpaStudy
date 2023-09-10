@@ -14,7 +14,7 @@ public class OrderItem {
 //    private Long orderId;
 
     //연관관계 매핑
-    @ManyToOne //orderItem == n, order == 1 한 주문은 여러개의 아이템을 가질 수 있다.
+    @ManyToOne(fetch = FetchType.LAZY) //orderItem == n, order == 1 한 주문은 여러개의 아이템을 가질 수 있다.
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
@@ -22,7 +22,7 @@ public class OrderItem {
 //    private Long itemId;
 
     //연관관계 매핑
-    @ManyToOne //orderItem == n, item = 1 한개의 아이템은 여러개의 주문아이템을 가질 수 있다.
+    @ManyToOne(fetch = FetchType.LAZY) //orderItem == n, item = 1 한개의 아이템은 여러개의 주문아이템을 가질 수 있다.
     @JoinColumn(name = "ITEM_ID")
     private Item item;
 
